@@ -15,6 +15,23 @@ sealed class BottomBarDestinations(
         icon = Icons.Default.Home
     )
 
+    object History : BottomBarDestinations(
+        route = "HISTORY",
+        title = "History",
+        icon = Icons.Default.History
+    )
+
+    object Exercise : BottomBarDestinations(
+        route = "EXERCISE",
+        title = "EXERCISE",
+        icon = Icons.Default.SportsGymnastics
+    )
+
+    object Nutrition : BottomBarDestinations(
+        route = "NUTRITION",
+        title = "NUTRITION",
+        icon = Icons.Default.SetMeal
+    )
     object Profile : BottomBarDestinations(
         route = "PROFILE",
         title = "PROFILE",
