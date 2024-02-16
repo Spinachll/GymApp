@@ -14,10 +14,12 @@ import com.sporttest.gymapp.screens.history.HistoryScreen
 import com.sporttest.gymapp.screens.home.HomeScreen
 import com.sporttest.gymapp.screens.home.homeNavGraph
 import com.sporttest.gymapp.screens.nutrition.NutritionScreen
+import com.sporttest.gymapp.viewmodel.HomeViewModel
 
 @Composable
 fun MainNavigationGraph(
-    navController: NavHostController
+    navController: NavHostController,
+    homeViewModel: HomeViewModel
 ) {
     val scaffoldState = rememberScaffoldState()
 
@@ -34,7 +36,10 @@ fun MainNavigationGraph(
             startDestination = BottomBarDestinations.Home.route
         ) {
             composable(route = BottomBarDestinations.Home.route) {
-                HomeScreen(navController = navController)
+                HomeScreen(
+                    navController = navController,
+                    homeViewModel = homeViewModel
+                )
             }
             composable(route = BottomBarDestinations.History.route) {
                 HistoryScreen(navController = navController)
