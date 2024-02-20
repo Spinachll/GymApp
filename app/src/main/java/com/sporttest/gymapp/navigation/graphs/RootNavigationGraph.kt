@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.sporttest.gymapp.screens.MainScreen
+import com.sporttest.gymapp.screens.auth.AuthScreen
 import com.sporttest.gymapp.viewmodel.HomeViewModel
 
 @Composable
@@ -15,10 +16,20 @@ fun RootNavigationGraph(
     NavHost(
         navController = navController,
         route = Graph.ROOT,
-        startDestination = Graph.MAIN
+        startDestination = Graph.AUTH
     ) {
         composable(route = Graph.MAIN) {
-            MainScreen(homeViewModel = homeViewModel)
+            MainScreen(
+                rootNavController = navController,
+                homeViewModel = homeViewModel
+            )
+        }
+
+        composable(route = Graph.AUTH) {
+            AuthScreen(
+                rootNavController = navController,
+                homeViewModel = homeViewModel
+            )
         }
     }
 }

@@ -1,8 +1,8 @@
 package com.sporttest.gymapp.di
 
-import com.sporttest.gymapp.network.UsersApi
-import com.sporttest.gymapp.repository.UserRepository
-import com.sporttest.gymapp.repository.UserRepositoryImpl
+import com.sporttest.gymapp.network.WorkoutApi
+import com.sporttest.gymapp.repository.WorkoutRepository
+import com.sporttest.gymapp.repository.WorkoutRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,8 +13,8 @@ import dagger.hilt.components.SingletonComponent
 object AppModule {
 
     @Provides
-    fun provideUsersApi(): UsersApi = UsersApi()
+    fun provideUsersApi(): WorkoutApi = WorkoutApi()
 
     @Provides
-    fun provideUserRepository(api: UsersApi): UserRepository = UserRepositoryImpl(api)
+    fun provideUserRepository(api: WorkoutApi): WorkoutRepository = WorkoutRepositoryImpl(api)
 }

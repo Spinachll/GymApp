@@ -2,9 +2,9 @@ package com.sporttest.gymapp.network
 
 import com.squareup.moshi.Json
 
-data class UsersResponse(
+data class WorkoutResponse(
     @field:Json(name = "data")
-    val users: List<User>,
+    val workoutItems: List<WorkoutItem>,
     @field:Json(name = "limit")
     val limit: Int,
     @field:Json(name = "page")

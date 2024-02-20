@@ -18,6 +18,7 @@ import com.sporttest.gymapp.viewmodel.HomeViewModel
 
 @Composable
 fun MainNavigationGraph(
+    rootNavController: NavHostController,
     navController: NavHostController,
     homeViewModel: HomeViewModel
 ) {
@@ -48,7 +49,10 @@ fun MainNavigationGraph(
                 ExerciseScreen(navController = navController)
             }
             composable(route = BottomBarDestinations.Nutrition.route) {
-                NutritionScreen(navController = navController)
+                NutritionScreen(
+                    rootNavController = rootNavController,
+                    navController = navController
+                )
             }
             homeNavGraph(navController = navController)
         }

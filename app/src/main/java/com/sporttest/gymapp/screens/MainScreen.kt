@@ -8,10 +8,12 @@ import com.sporttest.gymapp.viewmodel.HomeViewModel
 
 @Composable
 fun MainScreen(
+    rootNavController: NavHostController,
     navController: NavHostController = rememberNavController(),
     homeViewModel: HomeViewModel
 ) {
     MainNavigationGraph(
+        rootNavController = rootNavController,
         navController = navController,
         homeViewModel = homeViewModel
     )

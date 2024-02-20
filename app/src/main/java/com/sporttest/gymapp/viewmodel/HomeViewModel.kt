@@ -5,20 +5,20 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
-import com.sporttest.gymapp.paging.UsersDataSource
-import com.sporttest.gymapp.repository.UserRepository
+import com.sporttest.gymapp.paging.WorkoutsDataSource
+import com.sporttest.gymapp.repository.WorkoutRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val repo: UserRepository
+    private val repo: WorkoutRepository
 ) : ViewModel() {
 
     val usersPager = Pager(
         PagingConfig(pageSize = 10)
     ) {
-        UsersDataSource(repo)
+        WorkoutsDataSource(repo)
     }.flow.cachedIn(viewModelScope)
 
 }

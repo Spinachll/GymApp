@@ -13,6 +13,7 @@
         android:name=".GymApp"
         android:supportsRtl="true"
         android:theme="@style/Theme.GymApp"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"

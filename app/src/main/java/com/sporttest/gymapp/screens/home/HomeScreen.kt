@@ -18,7 +18,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.sporttest.gymapp.network.User
+import com.sporttest.gymapp.network.WorkoutItem
 import com.sporttest.gymapp.viewmodel.HomeViewModel
 
 @Composable
@@ -41,7 +41,7 @@ fun UserList(viewModel: HomeViewModel) {
     LazyColumn {
         items(usersList) { item ->
             item?.let {
-                UserCard(user = it)
+                UserCard(workoutItem = it)
             }
 
         }
@@ -51,7 +51,7 @@ fun UserList(viewModel: HomeViewModel) {
 }
 
 @Composable
-fun UserCard(user: User) {
+fun UserCard(workoutItem: WorkoutItem) {
     Card(
         elevation = 4.dp,
         modifier = Modifier
@@ -59,26 +59,25 @@ fun UserCard(user: User) {
             .fillMaxWidth()
             .wrapContentHeight()
     ) {
-        println(user.picture)
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp)
         ) {
-            AsyncImage(
-                model = ImageRequest.Builder(LocalContext.current)
-                    .data(user.picture)
-                    .crossfade(true)
-                    .build(),
-                contentDescription = "Placeholder",
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .clip(CircleShape)
-                    .width(42.dp)
-                    .height(42.dp)
-            )
+//            AsyncImage(
+//                model = ImageRequest.Builder(LocalContext.current)
+//                    .data(workoutItem.picture)
+//                    .crossfade(true)
+//                    .build(),
+//                contentDescription = "Placeholder",
+//                contentScale = ContentScale.Crop,
+//                modifier = Modifier
+//                    .clip(CircleShape)
+//                    .width(42.dp)
+//                    .height(42.dp)
+//            )
             Text(
-                text = user.name,
+                text = workoutItem.name,
                 fontSize = 24.sp,
                 modifier = Modifier
                     .padding(start = 12.dp)
