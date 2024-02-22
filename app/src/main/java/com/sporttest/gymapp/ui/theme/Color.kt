@@ -1,5 +1,6 @@
 package com.sporttest.gymapp.ui.theme
 
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 
 val Purple200 = Color(0xFFBB86FC)
@@ -10,6 +11,15 @@ val Teal200 = Color(0xFF03DAC5)
 val ControlsBackground = Color(0xFFF7F8F8)
 val PlaceholderColor = Color(0xFFADA4A5)
 val White = Color(0xFFFFFFFF)
+
+val PinkDark = Color(0xFFC58BF2)
+
+val BlueMainDark = Color(0xFF92A3FD)
+val BlueMainLight = Color(0xFF9DCEFF)
+val BlueHorizontalGradient = Brush.horizontalGradient(
+    0.0f to BlueMainLight,
+    1.0f to BlueMainDark,
+)
 
 val RedMain = Color(0xFFE65D56)
 val GreenMain = Color(0xFF57855E)

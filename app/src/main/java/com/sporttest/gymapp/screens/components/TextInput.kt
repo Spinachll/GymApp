@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.selection.TextSelectionColors
 import androidx.compose.material.Icon
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -17,6 +18,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.sporttest.gymapp.ui.theme.BeigeMain
 import com.sporttest.gymapp.ui.theme.BeigeMainTransparent
@@ -30,7 +34,8 @@ fun TextInput(
     modifier: Modifier = Modifier,
     textState: MutableState<String>,
     placeholderText: String = "",
-    leadingIcon: ImageVector? = null
+    leadingIcon: ImageVector? = null,
+    isPasswordField: Boolean = false
 ) {
     TextField(
         modifier = Modifier
@@ -42,6 +47,8 @@ fun TextInput(
         },
         shape = RoundedCornerShape(size = 40f),
         singleLine = true,
+        visualTransformation = if (isPasswordField) PasswordVisualTransformation() else VisualTransformation.None,
+        keyboardOptions = if (isPasswordField) KeyboardOptions(keyboardType = KeyboardType.Password) else KeyboardOptions.Default,
         textStyle = TextStyle(fontFamily = poppinsFamily),
         placeholder = {
             Text(
