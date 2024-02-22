@@ -8,12 +8,14 @@ import androidx.navigation.compose.rememberNavController
 import com.sporttest.gymapp.navigation.graphs.RootNavigationGraph
 import com.sporttest.gymapp.ui.theme.GymAppTheme
 import com.sporttest.gymapp.viewmodel.HomeViewModel
+import com.sporttest.gymapp.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     private val homeViewModel by viewModels<HomeViewModel>()
+    private val loginViewModel by viewModels<LoginViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +23,8 @@ class MainActivity : ComponentActivity() {
             GymAppTheme {
                 RootNavigationGraph(
                     navController = rememberNavController(),
-                    homeViewModel = homeViewModel
+                    homeViewModel = homeViewModel,
+                    loginViewModel = loginViewModel
                 )
             }
         }

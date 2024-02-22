@@ -2,14 +2,14 @@ package com.sporttest.gymapp.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.sporttest.gymapp.network.WorkoutItem
-import com.sporttest.gymapp.repository.WorkoutRepository
+import com.sporttest.gymapp.network.workout.WorkoutDto
+import com.sporttest.gymapp.repository.workout.WorkoutRepository
 
 class WorkoutsDataSource(
     private val repo: WorkoutRepository
-): PagingSource<Int, WorkoutItem>() {
+): PagingSource<Int, WorkoutDto>() {
 
-    override fun getRefreshKey(state: PagingState<Int, WorkoutItem>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, WorkoutDto>): Int? {
         return state.anchorPosition?.let { position ->
             val page = state.closestPageToPosition(position)
             page?.prevKey?.minus(1) ?: page?.nextKey?.plus(1)
@@ -20,7 +20,7 @@ class WorkoutsDataSource(
     override val keyReuseSupported: Boolean
         get() = true
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, WorkoutItem> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, WorkoutDto> {
         return try {
             val page = params.key ?: 1
             val response = repo.getWorkouts(page, 10)

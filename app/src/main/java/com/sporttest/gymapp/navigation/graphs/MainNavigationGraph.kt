@@ -51,7 +51,8 @@ fun MainNavigationGraph(
             composable(route = BottomBarDestinations.Nutrition.route) {
                 NutritionScreen(
                     rootNavController = rootNavController,
-                    navController = navController
+                    navController = navController,
+                    homeViewModel = homeViewModel
                 )
             }
             homeNavGraph(navController = navController)

@@ -8,16 +8,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import com.sporttest.gymapp.navigation.graphs.Graph
+import com.sporttest.gymapp.viewmodel.HomeViewModel
 
 @Composable
 fun NutritionScreen(
     navController: NavHostController,
-    rootNavController: NavHostController
+    rootNavController: NavHostController,
+    homeViewModel: HomeViewModel
 ) {
     Column(modifier = Modifier.fillMaxSize()) {
         Text(text = "NutritionScreen")
         Button(
             onClick = {
+                homeViewModel.logoutProcess = true
                 rootNavController.popBackStack(Graph.ROOT, true)
                 Graph.AUTH.let {
                     rootNavController.navigate(Graph.AUTH)

@@ -6,7 +6,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
 import com.sporttest.gymapp.paging.WorkoutsDataSource
-import com.sporttest.gymapp.repository.WorkoutRepository
+import com.sporttest.gymapp.repository.workout.WorkoutRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -14,6 +14,8 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val repo: WorkoutRepository
 ) : ViewModel() {
+
+    var logoutProcess: Boolean = false
 
     val usersPager = Pager(
         PagingConfig(pageSize = 10)
