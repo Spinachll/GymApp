@@ -2,14 +2,27 @@ package com.sporttest.gymapp.ui.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.sporttest.gymapp.R
+
+val poppinsFamily = FontFamily(
+    //TODO Add more fonts if need
+    Font(R.font.poppins_thin, FontWeight.Thin),
+    Font(R.font.poppins_regular, FontWeight.Normal),
+    Font(R.font.poppins_bold, FontWeight.Bold),
+    Font(R.font.poppins_medium, FontWeight.Medium),
+
+    // If you have a font like bold italic, you can add it like that
+    //Font(R.font.MY_BOLD_ITALIC_FONT_NAME, FontWeight.Bold, FontStyle.Italic),
+)
 
 // Set of Material typography styles to start with
 val Typography = Typography(
     body1 = TextStyle(
-        fontFamily = FontFamily.Default,
+        fontFamily = poppinsFamily,
         fontWeight = FontWeight.Normal,
         fontSize = 16.sp
     )
