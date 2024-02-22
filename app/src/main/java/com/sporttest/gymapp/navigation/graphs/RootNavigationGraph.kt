@@ -6,7 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.sporttest.gymapp.screens.MainScreen
-import com.sporttest.gymapp.screens.auth.AuthScreen
+import com.sporttest.gymapp.screens.auth.AuthMainScreen
 import com.sporttest.gymapp.viewmodel.HomeViewModel
 import com.sporttest.gymapp.viewmodel.LoginViewModel
 
@@ -40,10 +40,9 @@ fun RootNavigationGraph(
             } else {
                 homeViewModel.logoutProcess = false
                 loginViewModel.isSuccessLoading.value = false
-                AuthScreen(
+                AuthMainScreen(
                     rootNavController = navController,
-                    loginViewModel = loginViewModel,
-                    onClickLogin = loginViewModel::login,
+                    loginViewModel = loginViewModel
                 )
             }
         }
