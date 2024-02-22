@@ -12,7 +12,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.rememberNavController
 import com.sporttest.gymapp.navigation.graphs.RootNavigationGraph
 import com.sporttest.gymapp.ui.theme.GymAppTheme
-import com.sporttest.gymapp.ui.theme.White
 import com.sporttest.gymapp.viewmodel.HomeViewModel
 import com.sporttest.gymapp.viewmodel.LoginViewModel
 import dagger.hilt.android.AndroidEntryPoint
