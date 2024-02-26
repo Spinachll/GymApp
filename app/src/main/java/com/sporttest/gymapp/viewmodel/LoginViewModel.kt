@@ -1,11 +1,14 @@
 package com.sporttest.gymapp.viewmodel
 
 
+import android.content.Context
 import android.util.Log
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.sporttest.gymapp.data.datastore.AppValuesStore
 import com.sporttest.gymapp.network.login.LoginDto
 import com.sporttest.gymapp.repository.login.LoginRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,12 +22,13 @@ class LoginViewModel @Inject constructor(
     private val repo: LoginRepository
 ) : ViewModel() {
 
+
     val isSuccessLoading = mutableStateOf(value = false)
     val imageErrorAuth = mutableStateOf(value = false)
     val progressBar = mutableStateOf(value = false)
     private val loginRequestLiveData = MutableLiveData<Boolean>()
 
-    fun login(email: String, password: String) {
+    fun login(email: String, password: String, context: Context) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 progressBar.value = true
@@ -39,11 +43,13 @@ class LoginViewModel @Inject constructor(
                 )
 
                 if (response.isSuccessful) {
+                    val dataStore = AppValuesStore(context)
                     delay(1500L)
-                    isSuccessLoading.value = true
                     response.body()?.let { tokenDto ->
                         Log.d("Logging", "Response TokenDto: $tokenDto")
+                        dataStore.saveUserToken(tokenDto.sessionToken)
                     }
+                    isSuccessLoading.value = true
                 } else {
                     response.errorBody()?.let { error ->
                         imageErrorAuth.value = true

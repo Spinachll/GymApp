@@ -1,5 +1,6 @@
 package com.sporttest.gymapp.screens.auth
 
+import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -47,7 +48,7 @@ fun AuthScreen(
     rootNavController: NavHostController,
     navController: NavHostController,
     loginViewModel: LoginViewModel,
-    onClickLogin: (email: String, password: String) -> Unit,
+    onClickLogin: (email: String, password: String, context: Context) -> Unit,
 ) {
 
     val currentContext = LocalContext.current
@@ -138,7 +139,7 @@ fun AuthScreen(
                         return@MainButton
                     }
 
-                    onClickLogin(loginState.value, passwordState.value)
+                    onClickLogin(loginState.value, passwordState.value, currentContext)
                 },
                 textColor = Color.White,
                 gradient = BlueHorizontalGradient

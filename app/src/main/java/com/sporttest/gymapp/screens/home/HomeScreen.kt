@@ -5,15 +5,21 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
+import com.sporttest.gymapp.data.datastore.AppValuesStore
 import com.sporttest.gymapp.network.workout.WorkoutDto
 import com.sporttest.gymapp.viewmodel.HomeViewModel
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 
 @Composable
 fun HomeScreen(
@@ -31,6 +37,13 @@ fun HomeScreen(
 fun UserList(viewModel: HomeViewModel) {
 
     val usersList = viewModel.usersPager.collectAsLazyPagingItems()
+    val scope = rememberCoroutineScope()
+    val dataStore = AppValuesStore(LocalContext.current)
+    LaunchedEffect(true) {
+        scope.launch {
+            println("USER TOKEN" + dataStore.getUserToken.first())
+        }
+    }
 
     LazyColumn {
         items(usersList) { item ->
