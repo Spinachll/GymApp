@@ -21,6 +21,7 @@ class LoginViewModel @Inject constructor(
     private val repo: LoginRepository
 ) : ViewModel() {
 
+    // TODO Try to move it to another viewModel
     val userToken = mutableStateOf(value = "")
     val isSuccessLoading = mutableStateOf(value = false)
     val imageErrorAuth = mutableStateOf(value = false)
