@@ -7,7 +7,7 @@ class WorkoutRepositoryImpl(
     private val api: RetrofitHelper
 ) : WorkoutRepository {
 
-    override suspend fun getWorkouts(page: Int, limit: Int): WorkoutResponse {
-        return api.getWorkouts(page, limit)
+    override suspend fun getWorkouts(page: Int, limit: Int, token: String): WorkoutResponse {
+        return api.getWorkouts(page, limit, token)
     }
 }

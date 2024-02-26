@@ -1,10 +1,14 @@
 package com.sporttest.gymapp.viewmodel
 
+import android.app.Application
+import android.content.Context
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.cachedIn
+import com.sporttest.gymapp.data.datastore.AppValuesStore
 import com.sporttest.gymapp.paging.WorkoutsDataSource
 import com.sporttest.gymapp.repository.workout.WorkoutRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,14 +17,15 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val repo: WorkoutRepository
-) : ViewModel() {
+) : AndroidViewModel(Application()) {
 
     var logoutProcess: Boolean = false
 
     val usersPager = Pager(
         PagingConfig(pageSize = 10)
     ) {
-        WorkoutsDataSource(repo)
+        val ds = AppValuesStore(Application())
+        WorkoutsDataSource(repo, ds)
     }.flow.cachedIn(viewModelScope)
 
 }

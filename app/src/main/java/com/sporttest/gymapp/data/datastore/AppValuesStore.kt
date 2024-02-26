@@ -37,8 +37,8 @@ class AppValuesStore(private val context: Context) {
 
     fun clearUserToken() {
         coroutineScope.launch {
-            context.dataStore.edit {
-                it.remove(USER_TOKEN_KEY)
+            context.dataStore.edit { preferences ->
+                preferences[USER_TOKEN_KEY] = ""
             }
         }
     }

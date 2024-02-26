@@ -22,7 +22,7 @@ class LoginViewModel @Inject constructor(
     private val repo: LoginRepository
 ) : ViewModel() {
 
-
+    val userToken = mutableStateOf(value = "")
     val isSuccessLoading = mutableStateOf(value = false)
     val imageErrorAuth = mutableStateOf(value = false)
     val progressBar = mutableStateOf(value = false)

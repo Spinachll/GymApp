@@ -2,11 +2,14 @@ package com.sporttest.gymapp.paging
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.sporttest.gymapp.data.datastore.AppValuesStore
 import com.sporttest.gymapp.network.workout.WorkoutDto
 import com.sporttest.gymapp.repository.workout.WorkoutRepository
+import kotlinx.coroutines.flow.first
 
 class WorkoutsDataSource(
-    private val repo: WorkoutRepository
+    private val repo: WorkoutRepository,
+    private val dataStore: AppValuesStore
 ): PagingSource<Int, WorkoutDto>() {
 
     override fun getRefreshKey(state: PagingState<Int, WorkoutDto>): Int? {
@@ -23,7 +26,7 @@ class WorkoutsDataSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, WorkoutDto> {
         return try {
             val page = params.key ?: 1
-            val response = repo.getWorkouts(page, 10)
+            val response = repo.getWorkouts(page, 10, dataStore.getUserToken.first()?:"")
             LoadResult.Page(
                 data = response.workoutItems,
                 prevKey = null,

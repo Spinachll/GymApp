@@ -16,7 +16,11 @@ import retrofit2.http.Query
 interface RetrofitHelper {
 
     @POST("getList_dummy")
-    suspend fun getWorkouts(@Query("page") page: Int, @Query("limit") limit: Int): WorkoutResponse
+    suspend fun getWorkouts(
+        @Query("page") page: Int,
+        @Query("limit") limit: Int,
+        @Query("token") token: String
+    ): WorkoutResponse
 
     @POST("login_dummy")
     suspend fun login(@Body loginDto: LoginDto) : Response<TokenDto>

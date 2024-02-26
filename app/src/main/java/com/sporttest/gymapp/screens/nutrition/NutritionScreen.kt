@@ -6,7 +6,9 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
+import com.sporttest.gymapp.data.datastore.AppValuesStore
 import com.sporttest.gymapp.navigation.graphs.Graph
 import com.sporttest.gymapp.viewmodel.HomeViewModel
 
@@ -16,10 +18,12 @@ fun NutritionScreen(
     rootNavController: NavHostController,
     homeViewModel: HomeViewModel
 ) {
+    val dataStore = AppValuesStore(LocalContext.current)
     Column(modifier = Modifier.fillMaxSize()) {
         Text(text = "NutritionScreen")
         Button(
             onClick = {
+                dataStore.clearUserToken()
                 homeViewModel.logoutProcess = true
                 rootNavController.popBackStack(Graph.ROOT, true)
                 Graph.AUTH.let {

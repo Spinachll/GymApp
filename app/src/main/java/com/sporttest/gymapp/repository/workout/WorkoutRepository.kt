@@ -4,6 +4,6 @@ import com.sporttest.gymapp.network.workout.WorkoutResponse
 
 interface WorkoutRepository {
 
-    suspend fun getWorkouts(page: Int, limit: Int): WorkoutResponse
+    suspend fun getWorkouts(page: Int, limit: Int, token: String): WorkoutResponse
 
 }
