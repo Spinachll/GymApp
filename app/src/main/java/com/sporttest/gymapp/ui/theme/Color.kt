@@ -13,6 +13,11 @@ val PlaceholderColor = Color(0xFFADA4A5)
 val White = Color(0xFFFFFFFF)
 
 val PinkDark = Color(0xFFC58BF2)
+val PinkLight = Color(0xFFEEA4CE)
+val PinkHorizontalGradient = Brush.horizontalGradient(
+    0.0f to PinkLight,
+    1.0f to PinkDark,
+)
 
 val BlueMainDark = Color(0xFF92A3FD)
 val BlueMainLight = Color(0xFF9DCEFF)

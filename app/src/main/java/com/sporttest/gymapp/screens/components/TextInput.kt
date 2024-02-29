@@ -22,6 +22,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.sporttest.gymapp.ui.theme.BeigeMain
 import com.sporttest.gymapp.ui.theme.BeigeMainTransparent
 import com.sporttest.gymapp.ui.theme.ControlsBackground
@@ -49,12 +50,14 @@ fun TextInput(
         singleLine = true,
         visualTransformation = if (isPasswordField) PasswordVisualTransformation() else VisualTransformation.None,
         keyboardOptions = if (isPasswordField) KeyboardOptions(keyboardType = KeyboardType.Password) else KeyboardOptions.Default,
-        textStyle = TextStyle(fontFamily = poppinsFamily),
+        textStyle = TextStyle(fontFamily = poppinsFamily, fontSize = 18.sp),
+
         placeholder = {
             Text(
                 text = placeholderText,
                 color = PlaceholderColor,
-                fontFamily = poppinsFamily
+                fontFamily = poppinsFamily,
+                fontSize = 18.sp
             )
         },
         colors = TextFieldDefaults.colors(

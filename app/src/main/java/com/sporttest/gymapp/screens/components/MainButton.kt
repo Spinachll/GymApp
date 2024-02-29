@@ -28,6 +28,7 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.sporttest.gymapp.ui.theme.BlueHorizontalGradient
 import com.sporttest.gymapp.ui.theme.PinkDark
 
 @Composable
@@ -37,8 +38,8 @@ fun MainButton(
         mutableStateOf(false)
     },
     text: String = "MainButton",
-    textColor: Color,
-    gradient: Brush,
+    textColor: Color = Color.Black,
+    gradient: Brush = BlueHorizontalGradient,
     onClick: () -> Unit
 ) {
     Button(
