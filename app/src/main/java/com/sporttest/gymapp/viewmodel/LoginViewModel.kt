@@ -9,6 +9,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sporttest.gymapp.data.datastore.AppValuesStore
 import com.sporttest.gymapp.network.login.LoginDto
+import com.sporttest.gymapp.network.user.UserDto
+import com.sporttest.gymapp.network.user.UserDtoMutable
 import com.sporttest.gymapp.repository.login.LoginRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -26,7 +28,9 @@ class LoginViewModel @Inject constructor(
     val isSuccessLoading = mutableStateOf(value = false)
     val imageErrorAuth = mutableStateOf(value = false)
     val progressBar = mutableStateOf(value = false)
+    val registerUser = mutableStateOf(value = UserDtoMutable())
     private val loginRequestLiveData = MutableLiveData<Boolean>()
+
 
     fun login(email: String, password: String, context: Context) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -64,6 +68,38 @@ class LoginViewModel @Inject constructor(
             } catch (e: Exception) {
                 Log.d("Logging", "Error Authentication", e)
                 progressBar.value = false
+            }
+        }
+    }
+
+    fun register(userDto: UserDto, context: Context) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                progressBar.value = true
+                //val authService = RetrofitHelper.getAuthService()
+                //val responseService = authService.getLogin(LoginDto(email = email, password = password))
+
+                val response = repo.register(
+                    userDto
+                )
+
+                if (response.isSuccessful) {
+                    println("Register is good")
+                    val dataStore = AppValuesStore(context)
+                    delay(1500L)
+                    response.body()?.let { registerDto ->
+                        Log.d("Logging", "Response TokenDto: $registerDto")
+                    }
+                    isSuccessLoading.value = true
+                } else {
+                    println("Register is bad")
+                    response.errorBody()?.let { error ->
+                        delay(1500L)
+                    }
+                }
+                progressBar.value = false
+            } catch (e: Exception) {
+                Log.d("Logging", "Error Authentication", e)
             }
         }
     }

@@ -3,6 +3,8 @@ package com.sporttest.gymapp.network
 import com.sporttest.gymapp.BuildConfig
 import com.sporttest.gymapp.network.login.LoginDto
 import com.sporttest.gymapp.network.login.TokenDto
+import com.sporttest.gymapp.network.user.RegisterDto
+import com.sporttest.gymapp.network.user.UserDto
 import com.sporttest.gymapp.network.workout.WorkoutResponse
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -24,6 +26,9 @@ interface RetrofitHelper {
 
     @POST("login_dummy")
     suspend fun login(@Body loginDto: LoginDto) : Response<TokenDto>
+
+    @POST("register")
+    suspend fun register(@Body userDto: UserDto) : Response<RegisterDto>
 
     companion object {
 

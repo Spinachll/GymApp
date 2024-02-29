@@ -35,6 +35,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.sporttest.gymapp.R
+import com.sporttest.gymapp.navigation.destinations.AuthDestinations
 import com.sporttest.gymapp.screens.components.MainButton
 import com.sporttest.gymapp.screens.components.TextInput
 import com.sporttest.gymapp.ui.theme.BlueHorizontalGradient
@@ -120,7 +121,7 @@ fun AuthScreen(
 
             MainButton(
                 modifier = Modifier.padding(top = 20.dp),
-                loginViewModel.progressBar,
+                isLoading = loginViewModel.progressBar,
                 text = "Login",
                 onClick = {
                     if (loginState.value.isBlank()) {
@@ -160,6 +161,7 @@ fun AuthScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .clickable {
+                    navController.navigate(AuthDestinations.RegisterUser.route)
                     println("CLICKED")
                 },
             textAlign = TextAlign.Center,
