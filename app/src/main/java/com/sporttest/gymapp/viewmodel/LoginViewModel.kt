@@ -99,6 +99,7 @@ class LoginViewModel @Inject constructor(
                 }
                 progressBar.value = false
             } catch (e: Exception) {
+                progressBar.value = false
                 Log.d("Logging", "Error Authentication", e)
             }
         }
