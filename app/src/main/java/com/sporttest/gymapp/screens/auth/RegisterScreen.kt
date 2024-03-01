@@ -258,7 +258,13 @@ fun RegisterScreen(
                 UserDto(
                     login = loginViewModel.registerUser.value.login.value,
                     name = loginViewModel.registerUser.value.login.value,
-                    password = loginViewModel.registerUser.value.password.value
+                    password = loginViewModel.registerUser.value.password.value,
+                    age = loginViewModel.registerUser.value.age.value,
+                    email = loginViewModel.registerUser.value.email.value,
+                    height = loginViewModel.registerUser.value.height.value,
+                    patronymic = loginViewModel.registerUser.value.patronymic.value,
+                    surname = loginViewModel.registerUser.value.surname.value,
+                    weight = loginViewModel.registerUser.value.weight.value
                 ),
                 localContext
             )
