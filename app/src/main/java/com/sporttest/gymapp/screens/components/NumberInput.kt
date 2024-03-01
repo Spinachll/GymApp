@@ -1,5 +1,6 @@
 package com.sporttest.gymapp.screens.components
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -8,7 +9,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.selection.TextSelectionColors
 import androidx.compose.material.Icon
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -17,6 +17,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -30,25 +31,42 @@ import com.sporttest.gymapp.ui.theme.PlaceholderColor
 import com.sporttest.gymapp.ui.theme.poppinsFamily
 
 @Composable
-fun TextInput(
+fun NumberInput(
     modifier: Modifier = Modifier,
-    textState: MutableState<String>,
+    textState: MutableState<Int>,
     placeholderText: String = "",
     leadingIcon: ImageVector? = null,
     isPasswordField: Boolean = false
 ) {
+    val currentContext = LocalContext.current
     TextField(
         modifier = Modifier
             .then(modifier)
             .fillMaxWidth(),
-        value = textState.value,
+        value = if (textState.value > 0)
+            textState.value.toString()
+        else "",
         onValueChange = {
-            textState.value = it
+            if (it.isEmpty()) {
+                textState.value = -1
+                return@TextField
+            }
+            textState.value = when (it.toIntOrNull()) {
+                null -> textState.value
+                else -> it.toInt()
+            }
+
+            if (placeholderText == "Age" && textState.value > 100) {
+                Toast.makeText(
+                    currentContext, "Нихуя ты взрослый",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         },
         shape = RoundedCornerShape(size = 40f),
         singleLine = true,
         visualTransformation = if (isPasswordField) PasswordVisualTransformation() else VisualTransformation.None,
-        keyboardOptions = if (isPasswordField) KeyboardOptions(keyboardType = KeyboardType.Password) else KeyboardOptions.Default,
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
         textStyle = TextStyle(fontFamily = poppinsFamily, fontSize = 18.sp),
 
         placeholder = {

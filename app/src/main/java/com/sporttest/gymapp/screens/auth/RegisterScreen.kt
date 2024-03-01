@@ -1,6 +1,9 @@
 package com.sporttest.gymapp.screens.auth
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,7 +12,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Mail
+import androidx.compose.material.icons.filled.Numbers
 import androidx.compose.material.icons.filled.Password
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.TextFields
@@ -21,6 +30,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
@@ -36,6 +47,7 @@ import androidx.navigation.NavHostController
 import com.sporttest.gymapp.R
 import com.sporttest.gymapp.network.user.UserDto
 import com.sporttest.gymapp.screens.components.MainButton
+import com.sporttest.gymapp.screens.components.NumberInput
 import com.sporttest.gymapp.screens.components.TextInput
 import com.sporttest.gymapp.ui.theme.BlueHorizontalGradient
 import com.sporttest.gymapp.ui.theme.PinkHorizontalGradient
@@ -58,13 +70,22 @@ fun RegisterScreen(
         mutableStateOf(0.dp)
     }
 
+    val roundedCornerShape = RoundedCornerShape(
+        topStart = 14.dp,
+        topEnd = 28.dp,
+        bottomStart = 28.dp,
+        bottomEnd = 14.dp
+    )
+
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(start = 24.dp, end = 24.dp),
+            .background(brush = PinkHorizontalGradient)
+            .padding(all = 24.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
 
+        //TODO Change to intrinsicsize
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -73,7 +94,12 @@ fun RegisterScreen(
                 modifier = Modifier
                     .height(columnHeightDp)
                     .weight(2f)
-                    .padding(0.dp),
+                    .shadow(12.dp, shape = roundedCornerShape)
+                    .padding(0.dp)
+                    .background(
+                        Color.White,
+                        shape = roundedCornerShape
+                    ),
                 contentAlignment = Alignment.Center
             ) {
                 Text(
@@ -84,14 +110,13 @@ fun RegisterScreen(
                     letterSpacing = 1.sp,
                     lineHeight = 36.sp,
                     style = TextStyle(
-                        brush = PinkHorizontalGradient
+                        brush = BlueHorizontalGradient
                     )
                 )
             }
 
             Image(
                 modifier = Modifier
-                    //.fillMaxWidth()
                     .weight(3f)
                     .padding(top = 20.dp, bottom = 20.dp)
                     .onGloballyPositioned { coordinates ->
@@ -106,37 +131,122 @@ fun RegisterScreen(
         }
 
         Column(
-            verticalArrangement = Arrangement.spacedBy(6.dp)
-        ) {
-            CaptionText(text = "Login")
-            TextInput(
-                textState = loginViewModel.registerUser.value.login,
-                leadingIcon = Icons.Default.TextFields,
-                placeholderText = "Login"
-            )
-        }
+            modifier = Modifier
+                .shadow(20.dp, shape = roundedCornerShape)
+                .weight(1f)
+                .clip(
+                    shape = roundedCornerShape
+                )
+                .background(
+                    Color.White,
+                    shape = roundedCornerShape
+                )
+                .padding(start = 12.dp, end = 12.dp)
+                .verticalScroll(rememberScrollState())
 
-        Column(
-            verticalArrangement = Arrangement.spacedBy(6.dp)
         ) {
-            CaptionText(text = "Name")
-            TextInput(
-                textState = loginViewModel.registerUser.value.name,
-                leadingIcon = Icons.Default.Person,
-                placeholderText = "Name"
-            )
-        }
+            Column(
+                modifier = Modifier.padding(top = 12.dp),
+                verticalArrangement = Arrangement.spacedBy(6.dp)
+            ) {
+                CaptionText(text = "Login")
+                TextInput(
+                    textState = loginViewModel.registerUser.value.login,
+                    leadingIcon = Icons.Default.TextFields,
+                    placeholderText = "Login"
+                )
+            }
 
-        Column(
-            verticalArrangement = Arrangement.spacedBy(6.dp)
-        ) {
-            CaptionText(text = "Password")
-            TextInput(
-                textState = loginViewModel.registerUser.value.password,
-                leadingIcon = Icons.Default.Password,
-                placeholderText = "Password",
-                isPasswordField = true
-            )
+            //TODO Change for email validation
+            Column(
+                verticalArrangement = Arrangement.spacedBy(6.dp)
+            ) {
+                CaptionText(text = "E-mail")
+                TextInput(
+                    textState = loginViewModel.registerUser.value.email,
+                    leadingIcon = Icons.Default.Email,
+                    placeholderText = "E-mail"
+                )
+            }
+
+            Column(
+                verticalArrangement = Arrangement.spacedBy(6.dp)
+            ) {
+                CaptionText(text = "Password")
+                TextInput(
+                    textState = loginViewModel.registerUser.value.password,
+                    leadingIcon = Icons.Default.Password,
+                    placeholderText = "Password",
+                    isPasswordField = true
+                )
+            }
+
+            Column(
+                verticalArrangement = Arrangement.spacedBy(6.dp)
+            ) {
+                CaptionText(text = "Name")
+                TextInput(
+                    textState = loginViewModel.registerUser.value.name,
+                    leadingIcon = Icons.Default.Person,
+                    placeholderText = "Name"
+                )
+            }
+
+            Column(
+                verticalArrangement = Arrangement.spacedBy(6.dp)
+            ) {
+                CaptionText(text = "Surname")
+                TextInput(
+                    textState = loginViewModel.registerUser.value.surname,
+                    leadingIcon = Icons.Default.Person,
+                    placeholderText = "Surname"
+                )
+            }
+
+            Column(
+                verticalArrangement = Arrangement.spacedBy(6.dp)
+            ) {
+                CaptionText(text = "Patronymic")
+                TextInput(
+                    textState = loginViewModel.registerUser.value.patronymic,
+                    leadingIcon = Icons.Default.Person,
+                    placeholderText = "Patronymic"
+                )
+            }
+
+            Column(
+                verticalArrangement = Arrangement.spacedBy(6.dp)
+            ) {
+                CaptionText(text = "Age")
+                NumberInput(
+                    textState = loginViewModel.registerUser.value.age,
+                    leadingIcon = Icons.Default.Numbers,
+                    placeholderText = "Age"
+                )
+            }
+
+            Column(
+                verticalArrangement = Arrangement.spacedBy(6.dp)
+            ) {
+                CaptionText(text = "Weight")
+                NumberInput(
+                    textState = loginViewModel.registerUser.value.weight,
+                    leadingIcon = Icons.Default.Numbers,
+                    placeholderText = "Weight"
+                )
+            }
+
+            Column(
+                modifier = Modifier.padding(bottom = 12.dp),
+                verticalArrangement = Arrangement.spacedBy(6.dp)
+            ) {
+                CaptionText(text = "Height")
+                NumberInput(
+                    textState = loginViewModel.registerUser.value.height,
+                    leadingIcon = Icons.Default.Numbers,
+                    placeholderText = "Height"
+                )
+            }
         }
 
         MainButton(
