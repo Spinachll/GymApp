@@ -26,6 +26,8 @@ val BlueHorizontalGradient = Brush.horizontalGradient(
     1.0f to BlueMainDark,
 )
 
+val Grey = Color(0xFF7B6F72)
+
 val RedMain = Color(0xFFE65D56)
 val GreenMain = Color(0xFF57855E)
 val BeigeMain = Color(0xFFF5E9DC)

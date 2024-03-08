@@ -80,7 +80,7 @@ fun RegisterScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(brush = PinkHorizontalGradient)
+            //.background(brush = PinkHorizontalGradient)
             .padding(all = 24.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
@@ -94,7 +94,7 @@ fun RegisterScreen(
                 modifier = Modifier
                     .height(columnHeightDp)
                     .weight(2f)
-                    .shadow(12.dp, shape = roundedCornerShape)
+                    .shadow(6.dp, shape = roundedCornerShape)
                     .padding(0.dp)
                     .background(
                         Color.White,
@@ -110,7 +110,7 @@ fun RegisterScreen(
                     letterSpacing = 1.sp,
                     lineHeight = 36.sp,
                     style = TextStyle(
-                        brush = BlueHorizontalGradient
+                        brush = PinkHorizontalGradient
                     )
                 )
             }
@@ -132,7 +132,7 @@ fun RegisterScreen(
 
         Column(
             modifier = Modifier
-                .shadow(20.dp, shape = roundedCornerShape)
+                .shadow(12.dp, shape = roundedCornerShape)
                 .weight(1f)
                 .clip(
                     shape = roundedCornerShape
