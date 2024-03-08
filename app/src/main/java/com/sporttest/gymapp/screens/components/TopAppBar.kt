@@ -42,13 +42,15 @@ fun TopAppBar(
             containerColor = Color.White
         ),
         actions = {
-            if (showAccountButton)
-            IconButton(
-                onClick = onAccountButtonClick
-            ) {
-                Icon(
-                    imageVector = Icons.Default.AccountCircle,
-                    contentDescription = "Account Button")
+            if (showAccountButton) {
+                IconButton(
+                    onClick = onAccountButtonClick
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.AccountCircle,
+                        contentDescription = "Account Button"
+                    )
+                }
             }
         }
 
