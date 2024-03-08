@@ -1,6 +1,7 @@
 package com.sporttest.gymapp.screens.history
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -18,6 +19,7 @@ fun HistoryScreen(
         modifier = Modifier
             .fillMaxSize()
             .padding(start = 12.dp, end = 12.dp),
+        contentPadding = PaddingValues(top = 6.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         items(count = 20) {
