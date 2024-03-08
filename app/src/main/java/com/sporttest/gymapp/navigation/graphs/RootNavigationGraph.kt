@@ -22,7 +22,9 @@ fun RootNavigationGraph(
     loginViewModel: LoginViewModel
 ) {
     NavHost(
-        navController = navController, route = Graph.ROOT, startDestination = Graph.AUTH
+        navController = navController,
+        route = Graph.ROOT,
+        startDestination = Graph.MAIN //TODO Change for auth
     ) {
         composable(route = Graph.MAIN) {
             MainScreen(

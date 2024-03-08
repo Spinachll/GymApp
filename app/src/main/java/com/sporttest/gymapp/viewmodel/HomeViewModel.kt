@@ -19,7 +19,7 @@ class HomeViewModel @Inject constructor(
 
     var logoutProcess: Boolean = false
 
-    val usersPager = Pager(
+    val activityPager = Pager(
         PagingConfig(pageSize = 10)
     ) {
         val ds = AppValuesStore(Application())

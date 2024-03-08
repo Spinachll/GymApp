@@ -17,6 +17,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.items
 import com.sporttest.gymapp.data.datastore.AppValuesStore
 import com.sporttest.gymapp.network.workout.WorkoutDto
+import com.sporttest.gymapp.screens.components.ActivityCard
 import com.sporttest.gymapp.viewmodel.HomeViewModel
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -36,7 +37,7 @@ fun HomeScreen(
 @Composable
 fun UserList(viewModel: HomeViewModel) {
 
-    val usersList = viewModel.usersPager.collectAsLazyPagingItems()
+    val activityList = viewModel.activityPager.collectAsLazyPagingItems()
     val scope = rememberCoroutineScope()
     val dataStore = AppValuesStore(LocalContext.current)
     LaunchedEffect(true) {
@@ -45,12 +46,26 @@ fun UserList(viewModel: HomeViewModel) {
         }
     }
 
-    LazyColumn {
-        items(usersList) { item ->
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(start = 12.dp, end = 12.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
+        items(activityList) { item ->
             item?.let {
                 UserCard(workoutDto = it)
             }
 
+        }
+        items(count = 20) {
+            ActivityCard(
+                onCardClick = { /*TODO*/ },
+                onAdditionalButtonClick = { /*TODO*/ },
+                title = "Biceps Workout",
+                caption = "11 Exercises | 32 mins",
+                additionalText = "Data/Time"
+            )
         }
 
     }
