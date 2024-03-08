@@ -73,9 +73,13 @@ fun MainNavigationGraph(
             composable(route = BottomBarDestinations.Exercise.route) {
                 ExerciseScreen(navController = navController)
             }
-            
-            composable(route = BottomBarDestinations.Exercise.route) {
-                ExerciseScreen(navController = navController)
+
+            composable(route = BottomBarDestinations.Nutrition.route) {
+                NutritionScreen(
+                    rootNavController = rootNavController,
+                    navController = navController,
+                    homeViewModel = homeViewModel
+                )
             }
             
             composable(route = BottomBarDestinations.Profile.route) {

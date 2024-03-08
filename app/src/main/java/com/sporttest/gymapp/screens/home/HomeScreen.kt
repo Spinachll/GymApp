@@ -50,26 +50,14 @@ fun UserList(viewModel: HomeViewModel) {
         modifier = Modifier
             .fillMaxSize()
             .padding(start = 12.dp, end = 12.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
+        verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         items(activityList) { item ->
             item?.let {
                 UserCard(workoutDto = it)
             }
-
         }
-        items(count = 20) {
-            ActivityCard(
-                onCardClick = { /*TODO*/ },
-                onAdditionalButtonClick = { /*TODO*/ },
-                title = "Biceps Workout",
-                caption = "11 Exercises | 32 mins",
-                additionalText = "Data/Time"
-            )
-        }
-
     }
-
 }
 
 @Composable
