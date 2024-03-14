@@ -14,6 +14,7 @@ import com.sporttest.gymapp.screens.components.BottomBar
 import com.sporttest.gymapp.screens.components.TopAppBar
 import com.sporttest.gymapp.screens.exercise.ExerciseScreen
 import com.sporttest.gymapp.screens.history.HistoryScreen
+import com.sporttest.gymapp.screens.history.historyNavGraph
 import com.sporttest.gymapp.screens.home.HomeScreen
 import com.sporttest.gymapp.screens.home.homeNavGraph
 import com.sporttest.gymapp.screens.nutrition.NutritionScreen
@@ -64,11 +65,11 @@ fun MainNavigationGraph(
                     homeViewModel = homeViewModel
                 )
             }
-            
+
             composable(route = BottomBarDestinations.History.route) {
                 HistoryScreen(navController = navController)
             }
-            
+
             composable(route = BottomBarDestinations.Exercise.route) {
                 ExerciseScreen(navController = navController)
             }
@@ -80,11 +81,16 @@ fun MainNavigationGraph(
                     homeViewModel = homeViewModel
                 )
             }
-            
+
             composable(route = BottomBarDestinations.Profile.route) {
                 ProfileScreen(navController = navController)
             }
-            
+
+            historyNavGraph(
+                navController = navController,
+                homeViewModel = homeViewModel
+            )
+
             homeNavGraph(navController = navController)
         }
     }

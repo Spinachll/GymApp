@@ -24,7 +24,7 @@ interface RetrofitHelper {
         @Query("token") token: String
     ): WorkoutResponse
 
-    @POST("login_dummy")
+    @POST("login")
     suspend fun login(@Body loginDto: LoginDto) : Response<TokenDto>
 
     @POST("register")

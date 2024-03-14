@@ -90,7 +90,8 @@ class LoginViewModel @Inject constructor(
                     response.body()?.let { registerDto ->
                         Log.d("Logging", "Response TokenDto: $registerDto")
                     }
-                    isSuccessLoading.value = true
+                    //TODO Change for save token and redirect to home page
+                // isSuccessLoading.value = true
                 } else {
                     println("Register is bad")
                     response.errorBody()?.let { error ->
