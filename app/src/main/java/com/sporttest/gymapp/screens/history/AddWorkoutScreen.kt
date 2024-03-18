@@ -17,6 +17,6 @@ fun AddWorkoutScreen(
         modifier = Modifier
             .fillMaxSize()
     ) {
-        Text(text = "Edit Activity")
+        Text(text = "Edit Workout")
     }
 }
