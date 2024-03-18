@@ -38,7 +38,7 @@ fun MainButton(
         mutableStateOf(false)
     },
     text: String = "MainButton",
-    textColor: Color = Color.Black,
+    textColor: Color = Color.White,
     gradient: Brush = BlueHorizontalGradient,
     onClick: () -> Unit
 ) {

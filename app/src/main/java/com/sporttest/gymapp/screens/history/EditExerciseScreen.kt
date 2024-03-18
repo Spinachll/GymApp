@@ -9,7 +9,7 @@ import androidx.navigation.NavHostController
 import com.sporttest.gymapp.viewmodel.HomeViewModel
 
 @Composable
-fun AddWorkoutScreen(
+fun EditExerciseScreen(
     navController: NavHostController,
     homeViewModel: HomeViewModel
 ) {
@@ -17,6 +17,6 @@ fun AddWorkoutScreen(
         modifier = Modifier
             .fillMaxSize()
     ) {
-        Text(text = "Edit Workout")
+        Text(text = "Edit Exercise")
     }
 }

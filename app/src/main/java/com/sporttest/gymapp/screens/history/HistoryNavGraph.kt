@@ -13,10 +13,28 @@ fun NavGraphBuilder.historyNavGraph(
 ) {
     navigation(
         route = HistoryDestinations.HistoryRoot.route,
-        startDestination = HistoryDestinations.AddWorkout.route
+        startDestination = HistoryDestinations.EditWorkout.route
     ) {
-        composable(route = HistoryDestinations.AddWorkout.route) {
-            AddWorkoutScreen(
+        composable(route = HistoryDestinations.EditWorkout.route) {
+            EditWorkoutScreen(
+                navController = navController,
+                homeViewModel = homeViewModel)
+        }
+
+        composable(route = HistoryDestinations.EditTrainingPlan.route) {
+            EditTrainingPlanScreen(
+                navController = navController,
+                homeViewModel = homeViewModel)
+        }
+
+        composable(route = HistoryDestinations.EditExercise.route) {
+            EditExerciseScreen(
+                navController = navController,
+                homeViewModel = homeViewModel)
+        }
+
+        composable(route = HistoryDestinations.EditActivity.route) {
+            EditActivityScreen(
                 navController = navController,
                 homeViewModel = homeViewModel)
         }

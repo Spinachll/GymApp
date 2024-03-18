@@ -10,6 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.sporttest.gymapp.navigation.destinations.BottomBarDestinations
+import com.sporttest.gymapp.navigation.destinations.HistoryDestinations
 import com.sporttest.gymapp.screens.components.BottomBar
 import com.sporttest.gymapp.screens.components.TopAppBar
 import com.sporttest.gymapp.screens.exercise.ExerciseScreen
@@ -34,12 +35,14 @@ fun MainNavigationGraph(
         scaffoldState = scaffoldState,
         topBar = {
             TopAppBar(
+                //TODO Move chose title to utils file
                 title = when (val currentRoute = navBackStackEntry?.destination?.route) {
                     BottomBarDestinations.Home.route -> "Home"
                     BottomBarDestinations.History.route -> "Activity"
                     BottomBarDestinations.Exercise.route -> "Exercise"
                     BottomBarDestinations.Nutrition.route -> "Nutrition"
                     BottomBarDestinations.Profile.route -> "Profile"
+                    HistoryDestinations.EditActivity.route -> "Edit Activity"
                     else -> ""
                 },
                 showAccountButton = navBackStackEntry?.destination?.route != BottomBarDestinations.Profile.route,

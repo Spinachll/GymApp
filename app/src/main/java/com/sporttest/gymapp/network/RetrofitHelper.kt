@@ -1,6 +1,7 @@
 package com.sporttest.gymapp.network
 
 import com.sporttest.gymapp.BuildConfig
+import com.sporttest.gymapp.network.activity.ActivityDto
 import com.sporttest.gymapp.network.login.LoginDto
 import com.sporttest.gymapp.network.login.TokenDto
 import com.sporttest.gymapp.network.user.RegisterDto
@@ -12,6 +13,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.Body
+import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Query
 
@@ -25,10 +27,16 @@ interface RetrofitHelper {
     ): WorkoutResponse
 
     @POST("login")
-    suspend fun login(@Body loginDto: LoginDto) : Response<TokenDto>
+    suspend fun login(@Body loginDto: LoginDto): Response<TokenDto>
 
     @POST("register")
-    suspend fun register(@Body userDto: UserDto) : Response<RegisterDto>
+    suspend fun register(@Body userDto: UserDto): Response<RegisterDto>
+
+    @POST("activity")
+    suspend fun editActivity(
+        @Body activityDto: ActivityDto,
+        @Header("Token") token: String
+    ): Response<ActivityDto>
 
     companion object {
 

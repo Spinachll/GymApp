@@ -41,20 +41,26 @@ fun HistoryScreen(
             CardButton(
                 text = "Add Workout"
             ) {
-                navController.navigate(HistoryDestinations.AddWorkout.route)
+                navController.navigate(HistoryDestinations.EditWorkout.route)
             }
 
             CardButton(
                 text = "Add Training Plan"
-            ) { }
+            ) {
+                navController.navigate(HistoryDestinations.EditTrainingPlan.route)
+            }
 
             CardButton(
                 text = "Add Exercise"
-            ) { }
+            ) {
+                navController.navigate(HistoryDestinations.EditExercise.route)
+            }
 
             CardButton(
                 text = "Add Activity"
-            ) { }
+            ) {
+                navController.navigate(HistoryDestinations.EditActivity.route)
+            }
         }
 
         Row(
