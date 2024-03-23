@@ -51,15 +51,15 @@ fun HistoryScreen(
             }
 
             CardButton(
-                text = "Add Exercise"
+                text = "Edit Exercises"
             ) {
                 navController.navigate(HistoryDestinations.EditExercise.route)
             }
 
             CardButton(
-                text = "Add Activity"
+                text = "Edit Activities"
             ) {
-                navController.navigate(HistoryDestinations.EditActivity.route)
+                navController.navigate(HistoryDestinations.ListActivity.route)
             }
         }
 

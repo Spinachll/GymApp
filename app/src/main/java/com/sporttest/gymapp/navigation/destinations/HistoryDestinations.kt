@@ -6,4 +6,5 @@ sealed class HistoryDestinations(val route: String) {
     object EditTrainingPlan : HomeDestinations(route = "EDIT_TRAINING_PLAN")
     object EditExercise : HomeDestinations(route = "EDIT_EXERCISE")
     object EditActivity : HomeDestinations(route = "EDIT_ACTIVITY")
+    object ListActivity : HomeDestinations(route = "LIST_ACTIVITY")
 }

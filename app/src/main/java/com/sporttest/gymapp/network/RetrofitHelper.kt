@@ -2,6 +2,7 @@ package com.sporttest.gymapp.network
 
 import com.sporttest.gymapp.BuildConfig
 import com.sporttest.gymapp.network.activity.ActivityDto
+import com.sporttest.gymapp.network.activity.ActivityList
 import com.sporttest.gymapp.network.login.LoginDto
 import com.sporttest.gymapp.network.login.TokenDto
 import com.sporttest.gymapp.network.user.RegisterDto
@@ -32,7 +33,10 @@ interface RetrofitHelper {
     @POST("register")
     suspend fun register(@Body userDto: UserDto): Response<RegisterDto>
 
-    @POST("activity")
+    @POST("getUserActivity")
+    suspend fun getActivityList(@Header("Token") token: String): Response<ActivityList>
+
+    @POST("addActivity")
     suspend fun editActivity(
         @Body activityDto: ActivityDto,
         @Header("Token") token: String

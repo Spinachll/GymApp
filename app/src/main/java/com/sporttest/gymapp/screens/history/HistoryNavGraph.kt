@@ -33,6 +33,12 @@ fun NavGraphBuilder.historyNavGraph(
                 homeViewModel = homeViewModel)
         }
 
+        composable(route = HistoryDestinations.ListActivity.route) {
+            ListActivityScreen(
+                navController = navController,
+                homeViewModel = homeViewModel)
+        }
+
         composable(route = HistoryDestinations.EditActivity.route) {
             EditActivityScreen(
                 navController = navController,
