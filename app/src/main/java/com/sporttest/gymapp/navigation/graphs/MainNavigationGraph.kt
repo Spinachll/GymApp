@@ -72,7 +72,10 @@ fun MainNavigationGraph(
             }
 
             composable(route = BottomBarDestinations.History.route) {
-                HistoryScreen(navController = navController)
+                HistoryScreen(
+                    navController = navController,
+                    homeViewModel = homeViewModel
+                )
             }
 
             composable(route = BottomBarDestinations.Exercise.route) {

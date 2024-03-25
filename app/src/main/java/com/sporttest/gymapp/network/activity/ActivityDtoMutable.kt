@@ -8,17 +8,17 @@ import com.google.gson.annotations.SerializedName
 
 data class ActivityDtoMutable(
     @SerializedName("name")
-    val name: MutableState<String> = mutableStateOf(""),
+    val name: MutableState<String?> = mutableStateOf(null),
     @SerializedName("activityType")
-    val activityType: MutableState<Int> = mutableIntStateOf(-1),
+    val activityType: MutableState<Int?> = mutableStateOf(null),
     @SerializedName("repetitionsCountMin")
-    val repetitionsCountMin: MutableState<Int> = mutableIntStateOf(-1),
+    val repetitionsCountMin: MutableState<Int?> = mutableStateOf(null),
     @SerializedName("repetitionsCountMax")
-    val repetitionsCountMax: MutableState<Int> = mutableIntStateOf(-1),
+    val repetitionsCountMax: MutableState<Int?> = mutableStateOf(null),
     @SerializedName("weight")
-    val weight: MutableState<Double> = mutableDoubleStateOf(0.0),
+    val weight: MutableState<Double?> = mutableStateOf(null),
     @SerializedName("plannedDuration")
-    val plannedDuration: MutableState<Int> = mutableIntStateOf(-1),
+    val plannedDuration: MutableState<Int?> = mutableStateOf(null),
     @SerializedName("ownerId")
-    val ownerId: MutableState<Int> = mutableIntStateOf(-1),
+    val ownerId: MutableState<Int?> = mutableStateOf(null),
 )

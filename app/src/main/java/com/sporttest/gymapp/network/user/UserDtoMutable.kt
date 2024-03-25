@@ -7,21 +7,21 @@ import com.google.gson.annotations.SerializedName
 
 data class UserDtoMutable(
     @SerializedName("name")
-    val name: MutableState<String> = mutableStateOf(""),
+    val name: MutableState<String?> = mutableStateOf(null),
     @SerializedName("surname")
-    val surname: MutableState<String> = mutableStateOf(""),
+    val surname: MutableState<String?> = mutableStateOf(null),
     @SerializedName("patronymic")
-    val patronymic: MutableState<String> = mutableStateOf(""),
+    val patronymic: MutableState<String?> = mutableStateOf(null),
     @SerializedName("age")
-    val age: MutableState<Int> = mutableIntStateOf(-1),
+    val age: MutableState<Int?> = mutableStateOf(null),
     @SerializedName("weight")
-    val weight: MutableState<Int> = mutableIntStateOf(-1),
+    val weight: MutableState<Int?> = mutableStateOf(null),
     @SerializedName("height")
-    val height: MutableState<Int> = mutableIntStateOf(-1),
+    val height: MutableState<Int?> = mutableStateOf(null),
     @SerializedName("email")
-    val email: MutableState<String> = mutableStateOf(""),
+    val email: MutableState<String?> = mutableStateOf(null),
     @SerializedName("login")
-    val login: MutableState<String> = mutableStateOf(""),
+    val login: MutableState<String?> = mutableStateOf(null),
     @SerializedName("password")
-    val password: MutableState<String> = mutableStateOf(""),
+    val password: MutableState<String?> = mutableStateOf(null),
 )

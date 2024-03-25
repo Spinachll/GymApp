@@ -5,21 +5,21 @@ import com.google.gson.annotations.SerializedName
 
 data class UserDto(
     @SerializedName("name")
-    val name: String = "",
+    val name: String? = null,
     @SerializedName("surname")
-    val surname: String = "",
+    val surname: String? = null,
     @SerializedName("patronymic")
-    val patronymic: String = "",
+    val patronymic: String? = null,
     @SerializedName("age")
-    val age: Int = -1,
+    val age: Int? = null,
     @SerializedName("weight")
-    val weight: Int = -1,
+    val weight: Int? = null,
     @SerializedName("height")
-    val height: Int = -1,
+    val height: Int? = null,
     @SerializedName("email")
-    val email: String = "",
+    val email: String? = null,
     @SerializedName("login")
-    val login: String = "",
+    val login: String? = null,
     @SerializedName("password")
-    val password: String = "",
+    val password: String? = null,
 )

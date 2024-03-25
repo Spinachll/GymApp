@@ -7,17 +7,17 @@ import com.google.gson.annotations.SerializedName
 
 data class TrainingDtoMutable(
     @SerializedName("id")
-    val id: MutableState<Int> = mutableIntStateOf(-1),
+    val id: MutableState<Int?> = mutableStateOf(null),
     @SerializedName("userId")
-    val userId: MutableState<Int> = mutableIntStateOf(-1),
+    val userId: MutableState<Int?> = mutableStateOf(null),
     @SerializedName("plannedDuration")
-    val plannedDuration: MutableState<Int> = mutableIntStateOf(-1),
+    val plannedDuration: MutableState<Int?> = mutableStateOf(null),
     @SerializedName("exercisesCount")
-    val exercisesCount: MutableState<Int> = mutableIntStateOf(-1),
+    val exercisesCount: MutableState<Int?> = mutableStateOf(null),
     @SerializedName("name")
-    val name: MutableState<String> = mutableStateOf(""),
+    val name: MutableState<String?> = mutableStateOf(null),
     @SerializedName("comment")
-    val comment: MutableState<String> = mutableStateOf(""),
+    val comment: MutableState<String?> = mutableStateOf(null),
 ) {
     constructor(trainingDto: TrainingDto): this() {
         this.id.value = trainingDto.id?:-1

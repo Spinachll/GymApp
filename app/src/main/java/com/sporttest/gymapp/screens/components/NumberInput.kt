@@ -34,7 +34,7 @@ import com.sporttest.gymapp.ui.theme.poppinsFamily
 @Composable
 fun NumberInput(
     modifier: Modifier = Modifier,
-    textState: MutableState<Int>,
+    textState: MutableState<Int?>,
     placeholderText: String = "",
     leadingIcon: ImageVector? = null,
     isPasswordField: Boolean = false
@@ -44,7 +44,7 @@ fun NumberInput(
         modifier = Modifier
             .then(modifier)
             .fillMaxWidth(),
-        value = if (textState.value > 0)
+        value = if ((textState.value?:-1) > 0)
             textState.value.toString()
         else "",
         onValueChange = {
@@ -57,7 +57,7 @@ fun NumberInput(
                 else -> it.toInt()
             }
 
-            if (placeholderText == "Age" && textState.value > 100) {
+            if (placeholderText == "Age" && (textState.value?:-1) > 100) {
                 Toast.makeText(
                     currentContext, "Нихуя ты взрослый",
                     Toast.LENGTH_SHORT

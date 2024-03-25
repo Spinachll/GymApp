@@ -32,7 +32,7 @@ import com.sporttest.gymapp.ui.theme.poppinsFamily
 @Composable
 fun TextInput(
     modifier: Modifier = Modifier,
-    textState: MutableState<String>,
+    textState: MutableState<String?>,
     placeholderText: String = "",
     leadingIcon: ImageVector? = null,
     isPasswordField: Boolean = false
@@ -41,7 +41,7 @@ fun TextInput(
         modifier = Modifier
             .then(modifier)
             .fillMaxWidth(),
-        value = textState.value,
+        value = textState.value?:"",
         onValueChange = {
             textState.value = it
         },

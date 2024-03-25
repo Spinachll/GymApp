@@ -55,11 +55,11 @@ fun AuthScreen(
     val currentContext = LocalContext.current
 
     val loginState = rememberSaveable {
-        mutableStateOf("")
+        mutableStateOf<String?>(null)
     }
 
     val passwordState = rememberSaveable {
-        mutableStateOf("")
+        mutableStateOf<String?>(null)
     }
 
     Column(
@@ -124,7 +124,7 @@ fun AuthScreen(
                 isLoading = loginViewModel.progressBar,
                 text = "Login",
                 onClick = {
-                    if (loginState.value.isBlank()) {
+                    if (loginState.value?.isBlank() == true) {
                         Toast.makeText(
                             currentContext, "Please, fill the login",
                             Toast.LENGTH_SHORT
@@ -132,7 +132,7 @@ fun AuthScreen(
                         return@MainButton
                     }
 
-                    if (passwordState.value.isBlank()) {
+                    if (passwordState.value?.isBlank() == true) {
                         Toast.makeText(
                             currentContext, "Please, fill the password",
                             Toast.LENGTH_SHORT
@@ -140,7 +140,7 @@ fun AuthScreen(
                         return@MainButton
                     }
 
-                    onClickLogin(loginState.value, passwordState.value, currentContext)
+                    onClickLogin(loginState.value?:"", passwordState.value?:"", currentContext)
                 },
                 textColor = Color.White,
                 gradient = BlueHorizontalGradient

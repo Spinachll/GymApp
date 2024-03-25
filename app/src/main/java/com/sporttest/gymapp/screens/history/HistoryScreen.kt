@@ -20,10 +20,12 @@ import com.sporttest.gymapp.navigation.destinations.HistoryDestinations
 import com.sporttest.gymapp.screens.components.ActivityCard
 import com.sporttest.gymapp.screens.components.CardButton
 import com.sporttest.gymapp.ui.theme.poppinsFamily
+import com.sporttest.gymapp.viewmodel.HomeViewModel
 
 @Composable
 fun HistoryScreen(
-    navController: NavHostController
+    navController: NavHostController,
+    homeViewModel: HomeViewModel
 ) {
     Column(
         modifier = Modifier
@@ -47,7 +49,10 @@ fun HistoryScreen(
             CardButton(
                 text = "Edit Training Plan"
             ) {
-                navController.navigate(HistoryDestinations.ListTrainingPlan.route)
+                homeViewModel.trainingListLoaded = false
+                navController.navigate(HistoryDestinations.ListTrainingPlan.route) {
+                    restoreState = true
+                }
             }
 
             CardButton(

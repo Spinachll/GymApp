@@ -36,6 +36,9 @@ class HomeViewModel @Inject constructor(
 
     var errorMessage: String by mutableStateOf("")
 
+    var trainingListLoaded = false
+    val isRefreshing = mutableStateOf(false)
+
     //Training
     private val _trainingList = mutableStateListOf<TrainingDto>()
     val trainingList: List<TrainingDto>
@@ -64,6 +67,8 @@ class HomeViewModel @Inject constructor(
                 val dataStore = AppValuesStore(context)
                 val userToken = dataStore.getUserToken.first()
 
+                isRefreshing.value = true
+
                 val response = trainingRepository.getTrainingList(
                     userToken ?: ""
                 )
@@ -83,33 +88,34 @@ class HomeViewModel @Inject constructor(
             } catch (e: Exception) {
                 Log.d("Logging", "Error Authentication", e)
             }
+            isRefreshing.value = false
         }
     }
 
-    suspend fun getTrainingDetails(trainingId: Int, context: Context) : TrainingDto? {
+    suspend fun getTrainingDetails(trainingId: Int, context: Context): TrainingDto? {
         //viewModelScope.launch {
-            try {
-                val dataStore = AppValuesStore(context)
-                val userToken = dataStore.getUserToken.first()
+        try {
+            val dataStore = AppValuesStore(context)
+            val userToken = dataStore.getUserToken.first()
 
-                val response = trainingRepository.getTrainingDetails(
-                    trainingId = trainingId,
-                    token = userToken ?: ""
-                )
+            val response = trainingRepository.getTrainingDetails(
+                trainingId = trainingId,
+                token = userToken ?: ""
+            )
 
-                if (response.isSuccessful) {
-                    println("Get trainings details is good")
-                    response.body()?.let { trainingDto ->
-                        Log.d("Edit Activity", "Response TrainingDto: $trainingDto")
-                        return trainingDto
-                    }
-                } else {
-                    println("Get Training is bad")
+            if (response.isSuccessful) {
+                println("Get trainings details is good")
+                response.body()?.let { trainingDto ->
+                    Log.d("Edit Activity", "Response TrainingDto: $trainingDto")
+                    return trainingDto
                 }
-            } catch (e: Exception) {
-                Log.d("Logging", "Error Authentication", e)
+            } else {
+                println("Get Training is bad")
             }
-       // }
+        } catch (e: Exception) {
+            Log.d("Logging", "Error Authentication", e)
+        }
+        // }
         return null
     }
 
