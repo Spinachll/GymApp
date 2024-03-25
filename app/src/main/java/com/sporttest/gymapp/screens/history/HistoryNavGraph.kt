@@ -18,31 +18,43 @@ fun NavGraphBuilder.historyNavGraph(
         composable(route = HistoryDestinations.EditWorkout.route) {
             EditWorkoutScreen(
                 navController = navController,
-                homeViewModel = homeViewModel)
+                homeViewModel = homeViewModel
+            )
+        }
+
+        composable(route = HistoryDestinations.ListTrainingPlan.route) {
+            ListTrainingScreen(
+                navController = navController,
+                homeViewModel = homeViewModel
+            )
         }
 
         composable(route = HistoryDestinations.EditTrainingPlan.route) {
             EditTrainingPlanScreen(
                 navController = navController,
-                homeViewModel = homeViewModel)
+                homeViewModel = homeViewModel
+            )
         }
 
         composable(route = HistoryDestinations.EditExercise.route) {
             EditExerciseScreen(
                 navController = navController,
-                homeViewModel = homeViewModel)
+                homeViewModel = homeViewModel
+            )
         }
 
         composable(route = HistoryDestinations.ListActivity.route) {
             ListActivityScreen(
                 navController = navController,
-                homeViewModel = homeViewModel)
+                homeViewModel = homeViewModel
+            )
         }
 
         composable(route = HistoryDestinations.EditActivity.route) {
             EditActivityScreen(
                 navController = navController,
-                homeViewModel = homeViewModel)
+                homeViewModel = homeViewModel
+            )
         }
     }
 }

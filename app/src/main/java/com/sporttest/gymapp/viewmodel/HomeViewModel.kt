@@ -15,8 +15,10 @@ import androidx.paging.cachedIn
 import com.sporttest.gymapp.data.datastore.AppValuesStore
 import com.sporttest.gymapp.network.activity.ActivityDto
 import com.sporttest.gymapp.network.activity.ActivityDtoMutable
+import com.sporttest.gymapp.network.training.TrainingDto
 import com.sporttest.gymapp.paging.WorkoutsDataSource
 import com.sporttest.gymapp.repository.activity.ActivityRepository
+import com.sporttest.gymapp.repository.training.TrainingRepository
 import com.sporttest.gymapp.repository.workout.WorkoutRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -27,13 +29,20 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val workoutRepository: WorkoutRepository,
-    private val activityRepository: ActivityRepository
+    private val activityRepository: ActivityRepository,
+    private val trainingRepository: TrainingRepository
 
 ) : AndroidViewModel(Application()) {
 
+    var errorMessage: String by mutableStateOf("")
+
+    //Training
+    private val _trainingList = mutableStateListOf<TrainingDto>()
+    val trainingList: List<TrainingDto>
+        get() = _trainingList
+
     //Activities
     private val _activityList = mutableStateListOf<ActivityDto>()
-    var errorMessage: String by mutableStateOf("")
     val activityList: List<ActivityDto>
         get() = _activityList
     val editActivity = mutableStateOf(value = ActivityDtoMutable())
@@ -47,6 +56,38 @@ class HomeViewModel @Inject constructor(
         WorkoutsDataSource(workoutRepository, ds)
     }.flow.cachedIn(viewModelScope)
 
+
+    //Training plans
+    fun getTrainingList(context: Context) {
+        viewModelScope.launch {
+            try {
+                val dataStore = AppValuesStore(context)
+                val userToken = dataStore.getUserToken.first()
+
+                val response = trainingRepository.getTrainingList(
+                    userToken ?: ""
+                )
+
+                if (response.isSuccessful) {
+                    println("Get trainings list is good")
+                    response.body()?.let { trainingList ->
+                        Log.d("Edit Activity", "Response TrainingDto: $trainingList")
+                        _trainingList.clear()
+                        _trainingList.addAll(trainingList.data)
+                    }
+                    println(_trainingList.toList())
+
+                } else {
+                    println("Get Training is bad")
+                }
+            } catch (e: Exception) {
+                Log.d("Logging", "Error Authentication", e)
+            }
+        }
+    }
+
+
+    //Activities
     fun getActivityList(context: Context) {
         viewModelScope.launch {
             try {

@@ -6,7 +6,7 @@ data class ActivityDto(
     @SerializedName("name")
     val name: String = "",
     @SerializedName("activityType")
-    val activityType: Int = -1,
+    val activityType: Int? = -1,
     @SerializedName("repetitionsCountMin")
     val repetitionsCountMin: Int = -1,
     @SerializedName("repetitionsCountMax")

@@ -39,11 +39,11 @@ fun EditActivityScreen(
                 placeholderText = "Название"
             )
 
-            NumberInput(
-                textState = homeViewModel.editActivity.value.activityType,
-                leadingIcon = Icons.Default.Numbers,
-                placeholderText = "Тип активности"
-            )
+//            NumberInput(
+//                textState = homeViewModel.editActivity.value.activityType,
+//                leadingIcon = Icons.Default.Numbers,
+//                placeholderText = "Тип активности"
+//            )
 
             NumberInput(
                 textState = homeViewModel.editActivity.value.repetitionsCountMin,
