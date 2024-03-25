@@ -4,17 +4,17 @@ import com.google.gson.annotations.SerializedName
 
 data class ActivityDto(
     @SerializedName("name")
-    val name: String = "",
+    val name: String? = "",
     @SerializedName("activityType")
     val activityType: Int? = -1,
     @SerializedName("repetitionsCountMin")
-    val repetitionsCountMin: Int = -1,
+    val repetitionsCountMin: Int? = -1,
     @SerializedName("repetitionsCountMax")
-    val repetitionsCountMax: Int = -1,
+    val repetitionsCountMax: Int? = -1,
     @SerializedName("weight")
-    val weight: Double = 0.0,
+    val weight: Double? = 0.0,
     @SerializedName("plannedDuration")
-    val plannedDuration: Int = -1,
+    val plannedDuration: Int? = -1,
     @SerializedName("ownerId")
-    val ownerId: Int = -1,
+    val ownerId: Int? = -1,
 )

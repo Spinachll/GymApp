@@ -43,6 +43,8 @@ fun MainNavigationGraph(
                     BottomBarDestinations.Nutrition.route -> "Nutrition"
                     BottomBarDestinations.Profile.route -> "Profile"
                     HistoryDestinations.EditActivity.route -> "Edit Activity"
+                    HistoryDestinations.ListTrainingPlan.route -> "Training list"
+                    HistoryDestinations.EditTrainingPlan.route -> "Edit training plan"
                     else -> ""
                 },
                 showAccountButton = navBackStackEntry?.destination?.route != BottomBarDestinations.Profile.route,

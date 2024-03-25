@@ -5,6 +5,8 @@ import com.sporttest.gymapp.network.activity.ActivityDto
 import com.sporttest.gymapp.network.activity.ActivityList
 import com.sporttest.gymapp.network.login.LoginDto
 import com.sporttest.gymapp.network.login.TokenDto
+import com.sporttest.gymapp.network.training.TrainingDto
+import com.sporttest.gymapp.network.training.TrainingGetDetailsDto
 import com.sporttest.gymapp.network.training.TrainingList
 import com.sporttest.gymapp.network.user.RegisterDto
 import com.sporttest.gymapp.network.user.UserDto
@@ -36,6 +38,18 @@ interface RetrofitHelper {
 
     @POST("getUserTrainings")
     suspend fun getTrainingList(@Header("Token") token: String): Response<TrainingList>
+
+    @POST("getTrainingById")
+    suspend fun getTrainingDetails(
+        @Body trainingDetails: TrainingGetDetailsDto,
+        @Header("Token") token: String
+    ): Response<TrainingDto>
+
+    @POST("updateTraining")
+    suspend fun updateTraining(
+        @Body trainingDto: TrainingDto,
+        @Header("Token") token: String
+    ): Response<TrainingDto>
 
     @POST("getUserActivity")
     suspend fun getActivityList(@Header("Token") token: String): Response<ActivityList>

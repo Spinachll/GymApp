@@ -31,7 +31,7 @@ fun ListActivityScreen(
         LazyColumn() {
             
             items(homeViewModel.activityList) { activity ->
-                Text(text = activity.name)
+                Text(text = activity.name?:"")
             }
         }
     }

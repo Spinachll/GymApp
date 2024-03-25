@@ -86,6 +86,57 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    suspend fun getTrainingDetails(trainingId: Int, context: Context) : TrainingDto? {
+        //viewModelScope.launch {
+            try {
+                val dataStore = AppValuesStore(context)
+                val userToken = dataStore.getUserToken.first()
+
+                val response = trainingRepository.getTrainingDetails(
+                    trainingId = trainingId,
+                    token = userToken ?: ""
+                )
+
+                if (response.isSuccessful) {
+                    println("Get trainings details is good")
+                    response.body()?.let { trainingDto ->
+                        Log.d("Edit Activity", "Response TrainingDto: $trainingDto")
+                        return trainingDto
+                    }
+                } else {
+                    println("Get Training is bad")
+                }
+            } catch (e: Exception) {
+                Log.d("Logging", "Error Authentication", e)
+            }
+       // }
+        return null
+    }
+
+    fun updateTraining(trainingDto: TrainingDto, context: Context) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val dataStore = AppValuesStore(context)
+                val userToken = dataStore.getUserToken.first()
+
+                val response = trainingRepository.updateTraining(
+                    trainingDto,
+                    userToken ?: ""
+                )
+
+                if (response.isSuccessful) {
+                    println("Create activity is good")
+                    response.body()?.let { trainingDto ->
+                        Log.d("Edit Activity", "Response TrainingDto: $trainingDto")
+                    }
+                } else {
+                    println("Register is bad")
+                }
+            } catch (e: Exception) {
+                Log.d("Logging", "Error Authentication", e)
+            }
+        }
+    }
 
     //Activities
     fun getActivityList(context: Context) {

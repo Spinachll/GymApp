@@ -10,7 +10,7 @@ data class ActivityDtoMutable(
     @SerializedName("name")
     val name: MutableState<String> = mutableStateOf(""),
     @SerializedName("activityType")
-    val activityType: MutableState<Int?> = mutableStateOf(null),
+    val activityType: MutableState<Int> = mutableIntStateOf(-1),
     @SerializedName("repetitionsCountMin")
     val repetitionsCountMin: MutableState<Int> = mutableIntStateOf(-1),
     @SerializedName("repetitionsCountMax")

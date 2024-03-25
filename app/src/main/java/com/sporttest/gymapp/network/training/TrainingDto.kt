@@ -4,15 +4,15 @@ import com.google.gson.annotations.SerializedName
 
 data class TrainingDto(
     @SerializedName("id")
-    val id: Int = -1,
+    val id: Int? = -1,
     @SerializedName("userId")
-    val userId: Int = -1,
+    val userId: Int? = -1,
     @SerializedName("plannedDuration")
-    val plannedDuration: Int = -1,
+    val plannedDuration: Int? = -1,
     @SerializedName("exercisesCount")
-    val exercisesCount: Int = -1,
+    val exercisesCount: Int? = -1,
     @SerializedName("name")
-    val name: String? = null,
+    val name: String? = "",
     @SerializedName("comment")
-    val comment: String = "",
+    val comment: String? = "",
 )

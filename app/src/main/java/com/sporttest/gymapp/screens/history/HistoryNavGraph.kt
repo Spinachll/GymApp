@@ -2,7 +2,9 @@ package com.sporttest.gymapp.screens.history
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import androidx.navigation.navigation
 import com.sporttest.gymapp.navigation.destinations.HistoryDestinations
 import com.sporttest.gymapp.viewmodel.HomeViewModel
@@ -29,11 +31,21 @@ fun NavGraphBuilder.historyNavGraph(
             )
         }
 
-        composable(route = HistoryDestinations.EditTrainingPlan.route) {
-            EditTrainingPlanScreen(
-                navController = navController,
-                homeViewModel = homeViewModel
-            )
+        composable(
+            route = HistoryDestinations.EditTrainingPlan.route,
+            arguments = listOf(navArgument(HistoryDestinations.NAVIGATION_TRAINING_ID_ARGUMENT) {
+                type = NavType.IntType
+            })
+        ) { navBackStackEntry ->
+            navBackStackEntry
+                .arguments?.getInt(HistoryDestinations.NAVIGATION_TRAINING_ID_ARGUMENT)
+                ?.let { trainingId ->
+                    EditTrainingPlanScreen(
+                        trainingId = trainingId,
+                        navController = navController,
+                        homeViewModel = homeViewModel
+                    )
+                }
         }
 
         composable(route = HistoryDestinations.EditExercise.route) {

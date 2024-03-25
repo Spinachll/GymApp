@@ -6,5 +6,8 @@ import retrofit2.Response
 
 interface TrainingRepository {
     suspend fun getTrainingList(token: String): Response<TrainingList>
-    //suspend fun editTraining(trainingDto: TrainingDto, token: String): Response<TrainingDto>
+
+    suspend fun getTrainingDetails(trainingId: Int, token: String): Response<TrainingDto>
+
+    suspend fun updateTraining(trainingDto: TrainingDto, token: String): Response<TrainingDto>
 }
